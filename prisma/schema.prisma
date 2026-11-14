@@ -51,3 +51,27 @@ model Jogoplataforma {
 
   @@id([jogoId, plataformaId])
 }
+
+model Perfil {
+  id          Int           @id @default(autoincrement())
+  name        String
+  titulo      String?
+  titule      String?
+  projetos    Projeto[]
+  certificado Certificado[]
+}
+
+model Projeto {
+  id       Int    @id @default(autoincrement())
+  nome     String
+  perfil   Perfil @relation(fields: [perfilId], references: [id])
+  perfilId Int
+}
+
+model Certificado {
+  id       Int    @id @default(autoincrement())
+  nome     String
+  perfil   Perfil @relation(fields: [perfilId], references: [id])
+  perfilId Int
+}
+
